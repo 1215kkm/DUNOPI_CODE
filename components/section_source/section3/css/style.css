@@ -1,0 +1,48 @@
+
+section.info {width: 1200px; margin:0 auto; padding: 130px 0;}
+section.info > ul > li {float: left; width: 258px; height: 280px; background: #ddd; margin-right: 30px; margin-bottom: 30px;}
+section.info li.big {width: 624px;}
+section.info li:nth-child(3n) {margin-right: 0;}
+
+section.info li figure {width: 76px; height: 76px; background: #aaa; margin: 22px auto 0 auto; border-radius: 7px;}
+section.info li h3 {height: 52px; line-height: 52px; font-size:24px; text-align: center; font-weight: normal;}
+section.info li p {line-height: 26px; font-size: 19px; padding: 0 20px; color: #fff;}
+
+section.info > ul > li:nth-child(2) {background: #4675ae;}
+section.info li:nth-child(2) figure {background: #2d5c94;}
+section.info li:nth-child(2) h3 {color: #bcdaff;}
+
+section.info li:nth-child(3) {background: #4e9381;}
+section.info li:nth-child(3) figure {background: #146852;}
+section.info li:nth-child(3) h3 {color: #b6ffec;}
+
+section.info li:nth-child(5) {background: #1894c3;}
+section.info li:nth-child(5) figure {background: #006d98;}
+section.info li:nth-child(5) h3 {color: #c5f7ff;}
+
+section.info li:nth-child(6) {background: #0d557a;}
+section.info li:nth-child(6) figure {background: #104059;}
+section.info li:nth-child(6) h3 {color: #7bd2ff;}
+
+
+section.info li.map {border:2px solid #4675ae; box-sizing: border-box; overflow: hidden;}
+
+
+section.info li .time {width: 100%; height: 100%; padding: 30px; background: #305dce; box-sizing: border-box;}
+section.info li .time strong {font-size: 30px; color: #00fffc; display: block; height: 90px; border-bottom: 1px solid rgba(255,255,255,0.3); margin-bottom: 10px;}
+
+section.info li .time li {float: left;}
+section.info li .time li.tit {width: 100px; height: 120px; background: #224191; font-size: 19px; line-height: 30px; color: #fff; margin-right: 26px; text-align: justify; padding: 0 8px; box-sizing: border-box;}
+section.info li .time li.tit span {display: block; height: 30px;}
+section.info li .time li.tit span:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+}
+
+section.info li .time li.cont {line-height: 30px; color: #fff; }
+section.info li .time li.cont span {color: #89ff49;}
+
+section.info li .time li.dayoff {width: 156px; float: right; height: 120px; background: #224191;}
+section.info li .time li.dayoff b {display: block; font-size: 30px; color: #00fffc; text-align: center; padding: 25px 0 10px 0;}
+

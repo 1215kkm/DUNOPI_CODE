@@ -1,0 +1,20 @@
+
+html {font-size: 20px;}
+body {font-size: 1rem;}
+
+
+
+#header1 {width: 100%; height: 6rem; border-bottom: 1px solid #ddd; }
+#header1 h1 {width: 7.5rem; height: 2.4rem; float: left; margin: 2.25rem 0 0 0;}
+#header1 nav {width: auto; height: 3.5rem; float: right; margin-top: 2.5rem;}
+#header1 nav ul {height: 100%;float: left; margin-right: 2vw;}
+
+#header1 nav li {height: 3.5rem; line-height: 3.5rem; float: left; font-size: 0.9rem;}
+#header1 nav li a {display: block; height: 100%; padding: 0 1.5vw}
+
+#header1 .xi-search {float: right;margin-top: 0.75rem; padding: 0.25rem; border-radius: 5px; background: #eee; font-weight: bold; cursor: pointer;}
+
+#header1 .topmenu {position: absolute; top: 0.25rem; right: 0; font-size: 0;}
+#header1 .topmenu a {font-size: 0.8rem; color: #999; padding:0.25rem 0.75rem;  }
+#header1 .topmenu a i {font-size: 0.9rem; color: #777; font-weight: bold; position: relative; top: 0.1rem;}
+

@@ -1,0 +1,26 @@
+/* reset */
+* {margin: 0; padding: 0; }
+li {list-style: none;}
+a {color: #333; text-decoration: none;}
+fieldset {border:0}
+legend {font-size: 0; color: transparent; text-indent: -9999px; width: 0; height: 0; overflow: hidden; position: absolute; left: -9999px;}
+
+
+::selection {
+    background: #4675ae;
+    color: #fff;
+ }
+
+
+
+
+ 
+
+/* a:link {평상시모습}
+a:hover {마우스오버시모습}
+a:active {마우스누르고있는중의 모습}
+a:visited {color: red;} */
+
+
+.autoH:after {content: ""; display: block; clear: both;}
+/* 자식한테 float 있어서 부모가 크기를 자동으로 만들지 못할때 */

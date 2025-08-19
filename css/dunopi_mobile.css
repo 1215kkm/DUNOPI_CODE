@@ -1,0 +1,34 @@
+
+    .select_zone .option_tab a.preview_v {display: block;}
+    .select_zone .option_tab a.layout_v {display: block;}
+    
+    #dunopi_wrap {min-width: 100%;}
+    .toolbar {display: none;}
+    .content_zone {margin-left: 0px; }
+    .content_zone blockquote {font-size: 30px; text-align: center;}
+    .content_zone blockquote span {font-size: 16px; color: #777; display: block; margin-top: 20px; font-weight: normal; letter-spacing: 2em;}
+    .select_zone {width: 100%;}
+        
+    header#dunopi_main nav .layout_choice { width: 28px; height: 28px; float: left; margin-top: 11px; display: none; margin-left: 0px; position: relative;}
+        
+    header#dunopi_main nav .gnb {display: none;}
+    header#dunopi_main .topmenu {left: 50%; transform: translateX(-50%);}
+
+    
+    header#dunopi_main .login {float: right; font-size: 0.75rem; width: 48px; height: 40px; line-height: 40px; background: #000;}
+    header#dunopi_main .login:before,
+    header#dunopi_main .login:after
+     {content: ""; width: 14px; height: 2px; background: #fff; position: absolute; right: 13px; top: 15px; transition: .2s;}
+    header#dunopi_main .login:after {width: 20px; top: 22px; }
+
+    header#dunopi_main .login.on:before {width: 20px; transform: rotate(45deg); top: 19px;}
+    header#dunopi_main .login.on:after {width: 20px; transform: rotate(-45deg); top: 19px;}
+
+
+    header#dunopi_main .login .login_cont {position: fixed; width: 280px; height: 50vh; background: var(--Cmg2); z-index: 777; top: 40px; right: 0; display: none;}
+    header#dunopi_main .login .login_cont a {color: #fff; font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 0; display: block; width: 80%; height: 60px; line-height: 60px; text-align: center; margin: 0 auto;}
+    header#dunopi_main .login .login_cont a:first-child {margin-top: 50px;}
+
+
+
+    #my_downpage li {width: 160px;}

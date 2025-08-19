@@ -1,0 +1,63 @@
+
+#visual {width: 100%; height: 100vh; background: #aaa;}
+
+#visual .swiper-slide {position: relative;}
+#visual .swiper-slide .text_box {position: absolute; width: 1000px; height: 300px; text-align: center;}
+#visual .swiper-slide .text_box em {font-style: normal; font-size: 70px; font-weight: bold; color: #fff; }
+#visual .swiper-slide .text_box p {font-size: 36px; color: #ffe8d2; margin-top: 30px;}
+
+#visual .swiper-pagination {bottom: 50px;}
+#visual .swiper-pagination-bullet {width: 10px; height: 10px; border-radius: 0; background:#ffe8d2; border:1px solid; transition: .2s;}
+#visual .swiper-pagination-bullet:hover {transform: scale(2);}
+
+
+#visual .swiper-button-prev {left: 50px;}
+#visual .swiper-button-prev:after {content:url("../images/arrow_left.png"); width: 200px;}
+
+#visual .swiper-button-next {right: 50px;}
+#visual .swiper-button-next:after {content:url("../images/arrow_right.png"); width: 200px;}
+
+
+/* 이부분 설 끝나고 다시 해보기 */
+.call {width: 80px; height: 80px; background: #00a7af; position: fixed; right: 0; top: 50%; transform: translateY(-50%); text-align: center; z-index: 8; transition: .3s; overflow: hidden;}
+.call i {color: #fffef1; font-size: 44px; display: block; margin-top: 20px; }
+.call p {color: #fff; font-size: 18px; margin-top: 20px; margin-bottom: 10px; display: none;}
+.call a {font-size: 30px; color: #d8fea2; font-weight: bold; display: none;}
+
+.call.on {width: 330px; height: 200px;}
+.call.on p {display: block;}
+.call.on a {display: block;}
+
+
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

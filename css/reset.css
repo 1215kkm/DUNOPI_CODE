@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+/* Reset */
+* {margin: 0; padding: 0; box-sizing: border-box; vertical-align: top; box-sizing: border-box;}
+html::-webkit-scrollbar {width: 15px;}
+html::-webkit-scrollbar-thumb {height: 30%; background: #FFD84F; border-radius: 10px;}
+html::-webkit-scrollbar-track {background: #f0f0f0;}
+li {list-style: none; }
+a {text-decoration: none; color: #444;}
+img, fieldset, button {border: 0; outline: 0;}
+legend {font-size: 0; color: transparent; width: 0; height: 0; overflow: hidden; text-indent: -9999px;}
+input, textarea {outline: 0; font-family: 'Pretendard';}
+.autoHeight:after {content: ''; clear: both; display: block;}
+table {border-collapse: collapse;}
+
+img[alt="img_none"] {width: 100%; height: 100%;}

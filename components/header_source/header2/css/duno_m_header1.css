@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+#header1 h1 {float: none; margin: 0.5rem auto; }
+#header1 nav {background:rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; height: calc(100vh - 80px); width: 100%; margin-top: 0; z-index: 7;}
+#header1 nav > ul {position: absolute; width: 280px; height: 100%;background:rgba(255,255,255,0.98); overflow: auto; padding-top: 80px;}
+#header1 nav > ul > li {height: auto; line-height: 2.5rem; float: none; font-size: 0.75rem; text-indent:1rem ; border-bottom: 1px solid #eee; }
+#header1 nav > ul > li > a {display: block; height: 100%; padding: 0 1.5vw; }
+
+#header1 nav li .lnb {width: 84%; margin: 0 auto; position: relative; opacity: 1; visibility: visible; background: #f0f0f0; text-indent: 0; border-radius: 3px; margin-bottom: 0.8rem;;}
+#header1 nav li .lnb li {border-bottom: 1px solid #ddd;line-height: 2.4rem;}
+#header1 nav li .lnb li:last-child {border-bottom: 0px solid #ddd;}
+
+#header1 i.xi-bars {display: block; position: absolute; padding: 0.25rem; border-radius: 5px; background: #eee; top: 0.3rem; left: 15px;; font-weight: bold; cursor: pointer;}
+#header1 i.xi-star {position: absolute; top: 0.3rem; right: 15px; }
+
+#header1 .topmenu {right: auto; left: 0; z-index: 8; top: 40px; width: 280px; }
+#header1 .topmenu a {display: inline-block; text-align: center; width: 33.333%;font-size: 14px; border:1px solid #eee}
+#header1 .topmenu a.call{font-size: 0;}

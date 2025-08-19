@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+@import url(reset.css);
+@import url(font.css);
+
+header {width: 100%; height: 60px; background: #fff; position: relative;}
+header h1 {position: absolute; width: 150px; height: 40px; left: 50%; top:10px; transform: translateX(-50%);}
+header h1 img {width: 100%;}
+
+header nav i.fa-bars {width: 40px; height: 40px; float: left; margin: 10px; font-size: 22px; text-align: center; line-height: 40px; position: relative; z-index: 8;}
+
+header nav > ul {position: fixed; width: 300px; height: 100vh; background: #fff; z-index: 7; padding-top: 100px; box-sizing: border-box; overflow: auto; left: -300px; transition: .3s;}
+header nav.on > ul {left: 0;}
+header nav > ul > li.on > a {color: #0038FF;}
+
+header nav > ul > li {width: 90%; border-bottom: 1px solid #ccc; margin: 0 auto; text-align: center; line-height: 50px; font-size: 18px;}
+header nav > ul > li a {display: block;}
+
+header nav .lnb {padding-bottom: 20px; display: none;}
+header nav .lnb li {height: 40px; line-height: 40px; font-size: 16px; border-bottom: 1px solid #eee;}
+header nav .lnb li:last-child {border-bottom: 0}
+
+
+header nav > .lnb_bg {position: fixed; width: 100%; height: 100vh; background: rgba(0,0,0,0.8); z-index: 6; display: none;}
+
+
+header a.search {width: 40px; height: 40px; float: right; margin: 10px; font-size: 22px; text-align: center; line-height: 40px;}
+
+#visual {width: 100%; background: #000; position: relative;}
+#visual img {width: 100%;}
+
+#visual .text_box {position: absolute; text-align: center; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 100%;}
+#visual .text_box em {font-style: normal; font-size:30px; font-weight: bold; color: #fff; }
+#visual .text_box p {font-size: 16px; color: #ffe8d2; margin-top: 1em;}
+
+
+#section1 {padding: 30px 15px;}
+#section1 h2 {font-size: 24px; color: #222; text-align: center; margin-bottom: 30px;}
+#section1 h2 strong {color: #E5C48E;}
+#section1 h2 span {display: block; font-size: 14px; font-weight: 300; color: #777; letter-spacing: 0.03em; margin-top: 0.5em;}
+
+#section1 article li {width: calc((100% - 20px) / 3); margin-right: 10px; float: left; background: #fff; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); padding: 7px; box-sizing: border-box; text-align: center;}
+#section1 article li:nth-child(3) {margin-right: 0;}
+#section1 article li strong {font-size: 13px;}
+#section1 article li i {width: 40px; height: 40px; display: block; background:url('../images/icon_all.jpg'); background-size: 800%;}
+#section1 article li span {position: relative; width: 12px; height: 12px; display: block; margin: 5px 0;}
+#section1 article li span:before,
+#section1 article li span:after {content:""; position: absolute; width: 100%;height: 1px; background: #000; left: 0; top: 50%;}
+#section1 article li span:after {transform: rotate(90deg);}
+#section1 article li a {display: flex; flex-direction: column; align-items: center;}
+#section1 article li a i {order:1}
+#section1 article li a div {order:2}
+#section1 article li a span {order:3}
+
+
+#section2 {padding: 30px 15px; background: #f0f0f0;}
+#section2 h2 {font-size: 24px; color: #222; text-align: center; margin-bottom: 30px;}
+#section2 h2 strong {color: #E5C48E;}
+#section2 h2 span {display: block; font-size: 14px; font-weight: 300; color: #777; letter-spacing: 0.03em; margin-top: 0.5em;}
+
+#section2 article ul {display: flex; flex-wrap: wrap; gap: 10px; }
+#section2 article li {width: calc((100% - 10px) / 2); /* margin-right: 10px; float: left; */ background: #fff; border-radius: 10px; box-shadow: 0 0 0px rgba(0,0,0,0.1); padding: 7px; box-sizing: border-box; text-align: center; margin-bottom: 10px; position: relative; font-size: 13px; flex:1 1 150px; margin-bottom: 0;}
+/* #section2 article li:nth-child(2n) {margin-right: 0;} */
+
+#section2 article li i {position: absolute; width: 12px; height: 12px; display: block; margin: 5px 0; right: 10px;top: 5px;}
+#section2 article li i:before,
+#section2 article li i:after {content:""; position: absolute; width: 100%;height: 1px; background: #000; left: 0; top: 50%;}
+#section2 article li i:after {transform: rotate(90deg);}
+
+
+#section3 {padding: 30px 15px;}
+#section3 > div {}
+#section3 div h3 {font-size: 13px; padding: 0.5em 2em; border-radius: 50px; background: #1d4da2; color: #fff; display: inline-block; margin-left: 15px;}
+#section3 div ul {border: 1px solid #e5e5e5; border-radius: 10px; padding: 25px; margin-top: -15px;}
+#section3 div.board_notice ul li {border-bottom: 1px solid #eee; padding-bottom: 1.5em; margin-bottom: 1.5em;}
+#section3 div.board_notice ul li:last-child {border: 0; padding: 0; margin: 0;;}
+
+#section3 div ul li strong {font-size: 14px; display: block; padding-bottom: 1em;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;}
+#section3 div ul li p {font-size: 13px; color: #777; padding-bottom: 2em;}
+#section3 div ul li span.date {font-size: 13px; color: #777}
+
+
+#section3 .board_medical {margin-top: 30px;}
+#section3 .board_medical li {width:calc((100% - 10px) / 2); float: left; margin-right: 10px; border-radius: 10px; text-align: center; padding-bottom: 1em;}
+#section3 .board_medical li:nth-child(2n) {margin-right: 0;}
+#section3 .board_medical li figure {border-radius: 10px; overflow: hidden; height: 21vw; }
+#section3 .board_medical li figure img {width: 100%; min-height: 75px;}
+
+#section3 .board_medical li strong {display: block; font-size: 14px; margin-top: 1em;}
