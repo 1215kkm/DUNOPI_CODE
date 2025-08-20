@@ -1,73 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <!-- 컴포넌트 폴더 기준으로 상대경로 고정 -->
+  <base href="./">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>dp-header-1</title>
+</head>
+<body>
+  <!-- 모든 스타일/스크립트는 이 루트 안에서만 동작하도록 네임스페이스 부여 -->
+  <header class="dp-header-1" role="banner">
+    <div class="dp-hd-inner">
+      <a class="dp-logo" href="#">
+        <!-- 외부 이미지 없이 바로 보이도록 SVG 로고 -->
+        <svg viewBox="0 0 120 28" aria-label="LOGO">
+          <circle cx="14"  cy="14" r="12"></circle>
+          <circle cx="46"  cy="14" r="12"></circle>
+          <circle cx="78"  cy="14" r="12"></circle>
+          <circle cx="110" cy="14" r="12"></circle>
+        </svg>
+      </a>
 
+      <button class="dp-menu-toggle" aria-expanded="false" aria-controls="dp-gnb">메뉴</button>
 
-<link rel="stylesheet" href="header_source/header1/css/dunopi_pub.css">
-<link rel="stylesheet" href="header_source/header1/css/duno_m_header1.css" media="screen and (max-width:768px)">
-<script src="header_source/header1/script/dunopi_script.js"></script>
-    
-    <header id="header1">
-        <div class="center_box_1400 autoHeight">
-            <h1>
-                <a href="#">
-                    <!-- <img src="images/img_none.jpg" alt="img_none"> -->
-                    <img src="images/logo.png" alt="">
-                </a>
-            </h1>
-            
-            <nav>
-                <ul>
-                    <li><a href="#">COMPANY1</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">BUSINESS</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">PRODUCTS</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">SERVICE</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">BOARD</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                
-                <i class="xi-bars"></i>
-                
-            </nav>
+      <nav class="dp-gnb" id="dp-gnb" aria-label="주 메뉴">
+        <ul>
+          <li>
+            <a href="#">COMPANY</a>
+            <ul class="dp-lnb">
+              <li><a href="#">submenu1</a></li>
+              <li><a href="#">submenu2</a></li>
+              <li><a href="#">submenu3</a></li>
+              <li><a href="#">submenu4</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">BUSINESS</a>
+            <ul class="dp-lnb">
+              <li><a href="#">submenu1</a></li>
+              <li><a href="#">submenu2</a></li>
+              <li><a href="#">submenu3</a></li>
+              <li><a href="#">submenu4</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">PRODUCTS</a>
+            <ul class="dp-lnb">
+              <li><a href="#">submenu1</a></li>
+              <li><a href="#">submenu2</a></li>
+              <li><a href="#">submenu3</a></li>
+              <li><a href="#">submenu4</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">SERVICE</a>
+            <ul class="dp-lnb">
+              <li><a href="#">submenu1</a></li>
+              <li><a href="#">submenu2</a></li>
+              <li><a href="#">submenu3</a></li>
+              <li><a href="#">submenu4</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">BOARD</a>
+            <ul class="dp-lnb">
+              <li><a href="#">submenu1</a></li>
+              <li><a href="#">submenu2</a></li>
+              <li><a href="#">submenu3</a></li>
+              <li><a href="#">submenu4</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
 
-            <i class="xi-star"></i>
+      <div class="dp-utility">
+        <a href="#">LOGIN</a>
+        <a href="#">SIGN UP</a>
+      </div>
+    </div>
+  </header>
 
-            <div class="topmenu">
-                <a href="#">LOGIN</a>
-                <a href="#">SIGN UP</a>
-            </div>
-        </div>
-    </header>
-    
-    
+  <script src="./script/main.js"></script>
+</body>
+</html>

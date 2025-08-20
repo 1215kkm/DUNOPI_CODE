@@ -94,11 +94,79 @@ window.onload = function(){
  *           section_source/section{N}/section{N}.html   (Slide/Section 공통)
  *           footer_source/footer{N}/footer{N}.html
  */
-    function loadComponent(category, orderIndex){
-  // 실제 폴더 구조에 맞게
+   function injectComponentWithMeta(raw, componentBaseDir){
+  const doc  = new DOMParser().parseFromString(raw, 'text/html');
+  const head = doc.head || doc.querySelector('head');
+  const body = doc.body || doc;
+
+  // 외부 CSS
+  let cssHrefs = [];
+  (head ? head.querySelectorAll('link[rel="stylesheet"][href]') : [])
+    .forEach(el => cssHrefs.push(el.getAttribute('href')));
+  body.querySelectorAll('link[rel="stylesheet"][href]')
+    .forEach(el => cssHrefs.push(el.getAttribute('href')));
+
+  // 인라인 <style>
+  let inlineCss = [];
+  (head ? head.querySelectorAll('style') : [])
+    .forEach(el => inlineCss.push(el.textContent || ''));
+  body.querySelectorAll('style')
+    .forEach(el => inlineCss.push(el.textContent || ''));
+
+  // 외부 JS
+  let jsSrcs = [];
+  (head ? head.querySelectorAll('script[src]') : [])
+    .forEach(el => jsSrcs.push(el.getAttribute('src')));
+  body.querySelectorAll('script[src]')
+    .forEach(el => jsSrcs.push(el.getAttribute('src')));
+
+  // 인라인 <script>
+  let inlineJs = [];
+  (head ? head.querySelectorAll('script:not([src])') : [])
+    .forEach(el => inlineJs.push(el.textContent || ''));
+  body.querySelectorAll('script:not([src])')
+    .forEach(el => inlineJs.push(el.textContent || ''));
+
+  // 현재 페이지 실행을 위해 즉시 적용
+  const cssAbs = cssHrefs.map(h => _absFrom(componentBaseDir, h));
+  cssAbs.forEach(_ensureCss);
+  (head ? head.querySelectorAll('style') : []).forEach(el => document.head.appendChild(el.cloneNode(true)));
+  body.querySelectorAll('style').forEach(el => document.head.appendChild(el.cloneNode(true)));
+
+  let jsAbs = jsSrcs.map(s => _absFrom(componentBaseDir, s));
+  $(body).find('link,script').remove();
+
+  const $wrapped = $('<div class="dunopi_zone"><span class="btn_del_dunopi">삭제</span><i></i></div>');
+  $wrapped.append($(body).contents());
+  // 메타 저장(다운로드용)
+  $wrapped.data('dpBase', componentBaseDir);
+  $wrapped.data('dpCss',  cssAbs);
+  $wrapped.data('dpJs',   jsAbs);
+  $wrapped.data('dpInlineCss', inlineCss);
+  $wrapped.data('dpInlineJs',  inlineJs);
+  $('.dunopi').append($wrapped);
+
+  (function loadNext(i){
+    if (i >= jsAbs.length){
+      inlineJs.forEach(code => $.globalEval(code));
+      zoneRemove();
+      return;
+    }
+    _ensureJs(jsAbs[i], () => loadNext(i+1));
+  })(0);
+}
+
+
+
+
+
+
+
+
+function loadComponent(category, orderIndex){
   var map = {
     header : { root: 'components/header_source',  prefix: 'header'  },
-    slide  : { root: 'components/section_source', prefix: 'section' }, // slide도 section 재사용
+    slide  : { root: 'components/section_source', prefix: 'section' },
     section: { root: 'components/section_source', prefix: 'section' },
     footer : { root: 'components/footer_source',  prefix: 'footer'  }
   };
@@ -106,65 +174,218 @@ window.onload = function(){
   if (!map[key]) { alert('알 수 없는 카테고리: ' + category); return; }
 
   var num      = orderIndex;
-  var baseName = map[key].prefix + num;                    // header1 / section2 / footer1
-  var baseDir  = map[key].root + '/' + baseName + '/';     // 컴포넌트 폴더
+  var baseName = map[key].prefix + num;
+  var baseDir  = map[key].root + '/' + baseName + '/';
 
   var candidates = [
-    baseDir + baseName + '.html',                          // components/.../header1/header1.html
-    baseDir + 'index.html',                                // components/.../header1/index.html
-    map[key].root + '/' + baseName + '.html'               // components/.../header1.html (단일 파일 케이스)
+    baseDir + baseName + '.html',
+    baseDir + 'index.html',
+    map[key].root + '/' + baseName + '.html'
   ];
 
-  tryGet(candidates, function(raw){ injectComponent(raw, baseDir); }, function(){
+  tryGet(candidates, function(raw){
+    // ★ 전역 함수로 통일
+    injectComponentWithMeta(raw, baseDir);
+  }, function(){
     alert('컴포넌트를 불러오지 못했습니다.\n시도 경로:\n- ' + candidates.join('\n- '));
   });
 
   function tryGet(paths, ok, fail, i){ i = i||0; if (i >= paths.length) return fail();
     $.get(paths[i], ok).fail(function(){ tryGet(paths, ok, fail, i+1); });
   }
-
-  function injectComponent(raw, componentBaseDir){
-    var doc   = new DOMParser().parseFromString(raw, 'text/html');
-    var head  = doc.head || doc.querySelector('head');
-    var body  = doc.body || doc;
-
-    // ① CSS 수집 → 절대경로화 → <head>에 장착
-    var cssHrefs = [];
-    (head ? head.querySelectorAll('link[rel="stylesheet"][href]') : []).forEach(function(el){ cssHrefs.push(el.getAttribute('href')); });
-    body.querySelectorAll('link[rel="stylesheet"][href]').forEach(function(el){ cssHrefs.push(el.getAttribute('href')); });
-    cssHrefs.map(function(h){ return _absFrom(componentBaseDir, h); }).forEach(_ensureCss);
-    // 내장 <style>은 그대로 복제해서 <head>로 이동
-    (head ? head.querySelectorAll('style') : []).forEach(function(el){ document.head.appendChild(el.cloneNode(true)); });
-    body.querySelectorAll('style').forEach(function(el){ document.head.appendChild(el.cloneNode(true)); });
-
-    // ② 외부 JS 수집 → 절대경로화 → 로드
-    var jsSrcs = [];
-    (head ? head.querySelectorAll('script[src]') : []).forEach(function(el){ jsSrcs.push(el.getAttribute('src')); });
-    body.querySelectorAll('script[src]').forEach(function(el){ jsSrcs.push(el.getAttribute('src')); });
-    jsSrcs = jsSrcs.map(function(s){ return _absFrom(componentBaseDir, s); });
-
-    // ③ 인라인 스크립트 수집 (나중에 실행)
-    var inlineScripts = [];
-    (head ? head.querySelectorAll('script:not([src])') : []).forEach(function(el){ inlineScripts.push(el.textContent); });
-    body.querySelectorAll('script:not([src])').forEach(function(el){ inlineScripts.push(el.textContent); });
-
-    // ④ 바디 콘텐츠에서 link/script는 제거(중복 로딩 방지) 후 DOM 붙이기
-    $(body).find('link,script').remove();
-    var wrapped = $('<div class="dunopi_zone"><span class="btn_del_dunopi">삭제</span><i></i></div>');
-    wrapped.append($(body).contents());
-    $('.dunopi').append(wrapped);
-
-    // ⑤ 외부 JS들을 순차 로딩 후 인라인 스크립트 실행
-    (function loadNext(i){
-      if (i >= jsSrcs.length) {
-        inlineScripts.forEach(function(code){ $.globalEval(code); });
-        zoneRemove(); // 삭제 버튼 바인딩(초기코드 함수)
-        return;
-      }
-      _ensureJs(jsSrcs[i], function(){ loadNext(i+1); });
-    })(0);
-  }
 }
+
+
+
+
+
+
+const _isHttp = u => /^https?:\/\//i.test(u);
+const _sameOrigin = u => _isHttp(u) ? u.startsWith(location.origin) : !u.startsWith('/');
+
+// 바이너리/텍스트 요청
+async function _getArrayBuffer(url){ const r = await fetch(url, {cache:'no-cache'}); if(!r.ok) throw new Error(url); return await r.arrayBuffer(); }
+async function _getText(url){ const r = await fetch(url, {cache:'no-cache'}); if(!r.ok) throw new Error(url); return await r.text(); }
+
+// ZIP에 파일 추가하고 경로 반환
+async function _zipAddBinary(zip, path, url){ const buf = await _getArrayBuffer(url); zip.file(path, buf); return path; }
+function _safePath(url){ return url.replace(location.origin + '/', ''); }
+
+// CSS url(...) → ZIP 자산 경로로 치환
+async function _rewriteCssAndCollect(zip, cssUrl, cssText){
+  const base = new URL('.', cssUrl).href;
+  const re = /url\(\s*(['"]?)([^'")]+)\1\s*\)/g;   // data: 제외는 아래 조건으로 처리
+  let out = ''; let last = 0; let m;
+
+  while ((m = re.exec(cssText)) !== null){
+    const raw = m[2].trim();
+    // data:, about:, chrome: 등은 그대로
+    if (/^(data:|about:|chrome:)/i.test(raw)){ continue; }
+
+    // 절대 URL 만들기
+    const abs = _absFrom(base, raw);
+    let repl = abs;
+
+    // same-origin이면 ZIP에 저장
+    if (_sameOrigin(abs)){
+      const rel = _safePath(abs);
+      const dst = 'assets/' + rel;
+      await _zipAddBinary(zip, dst, abs);
+      repl = dst;
+    }
+
+    out += cssText.slice(last, m.index) + `url(${repl})`;
+    last = re.lastIndex;
+  }
+  out += cssText.slice(last);
+  return out;
+}
+
+
+
+
+
+
+$('a.download').off('click').on('click', async function(e){
+  e.preventDefault();
+
+  const $zones = $('.dunopi .dunopi_zone');
+  if (!$zones.length){ alert('추가된 컴포넌트가 없습니다.'); return; }
+
+  const zip = new JSZip();
+  const htmlParts   = [];
+  const cssAllHrefs = [];
+  const jsAllSrcs   = [];
+  let inlineCssAll  = [];
+  let inlineJsAll   = [];
+
+  // 1) 본문 + 이미지 수집
+  for (const el of $zones){
+    const $z = $(el);
+    const $clone = $z.clone();
+    $clone.find('.btn_del_dunopi, i').remove();
+
+    // 이미지 로컬 자산으로 수집
+    const $imgs = $clone.find('img[src]');
+    for (const img of $imgs){
+      const src = $(img).attr('src');
+      if (!src || /^data:/i.test(src)) continue;
+      const abs = _absFrom($z.data('dpBase') || '.', src);
+      if (_sameOrigin(abs)){
+        const rel = _safePath(abs);
+        const target = 'assets/' + rel;
+        try{
+          await _zipAddBinary(zip, target, abs);
+          $(img).attr('src', target);
+        }catch(_){}
+      }
+    }
+
+    htmlParts.push($clone.html());
+
+    // 메타 수집
+    ( ($z.data('dpCss')||[]) ).forEach(h => cssAllHrefs.push(h));
+    ( ($z.data('dpJs') ||[]) ).forEach(s => jsAllSrcs.push(s));
+    inlineCssAll = inlineCssAll.concat($z.data('dpInlineCss')||[]);
+    inlineJsAll  = inlineJsAll.concat($z.data('dpInlineJs') ||[]);
+  }
+
+  // 2) 중복 제거(순서 유지)
+  const uniq = arr => [...new Map(arr.map(v=>[v,v])).values()];
+  const cssHrefs = uniq(cssAllHrefs);
+  const jsSrcs   = uniq(jsAllSrcs);
+
+  // 3) CSS 하나로 병합
+  const externalCssTags = [];  // CDN 등은 외부로 남김
+  const cssBundleParts  = [];
+
+  for (const href of cssHrefs){
+    if (!_sameOrigin(href)){
+      externalCssTags.push(`<link rel="stylesheet" href="${href}">`);
+      continue;
+    }
+    try{
+      const txt = await _getText(href);
+      const rewritten = await _rewriteCssAndCollect(zip, href, txt); // 내부 url(...) 자원도 ZIP에 복사
+      cssBundleParts.push(`/* ===== ${href} ===== */\n${rewritten}`);
+    }catch(_){
+      // 실패하면 외부 링크로 대체
+      externalCssTags.push(`<link rel="stylesheet" href="${href}">`);
+    }
+  }
+
+  if (inlineCssAll.length){
+    cssBundleParts.push(`/* ===== inline CSS ===== */\n${inlineCssAll.join('\n')}`);
+  }
+
+  const hasCssBundle = cssBundleParts.length > 0;
+  if (hasCssBundle){
+    zip.file('assets/bundle.css', cssBundleParts.join('\n\n'));
+  }
+
+  // 4) JS 하나로 병합
+  const externalJsTags = []; // CDN 등은 외부로 남김
+  const jsBundleParts  = [];
+
+  for (const src of jsSrcs){
+    if (!_sameOrigin(src)){
+      externalJsTags.push(`<script src="${src}"></script>`);
+      continue;
+    }
+    try{
+      const txt = await _getText(src);
+      jsBundleParts.push(`/* ===== ${src} ===== */\n;${txt}`);
+    }catch(_){
+      externalJsTags.push(`<script src="${src}"></script>`);
+    }
+  }
+
+  if (inlineJsAll.length){
+    jsBundleParts.push(`/* ===== inline JS ===== */\n;${inlineJsAll.join('\n;\n')}`);
+  }
+
+  const hasJsBundle = jsBundleParts.length > 0;
+  if (hasJsBundle){
+    zip.file('assets/bundle.js', jsBundleParts.join('\n\n'));
+  }
+
+  // 5) index.html 생성
+  const headLinks = [];
+  if (hasCssBundle) headLinks.push(`<link rel="stylesheet" href="assets/bundle.css">`);
+  headLinks.push(...externalCssTags);
+
+  const tailScripts = [];
+  if (hasJsBundle) tailScripts.push(`<script src="assets/bundle.js"></script>`);
+  tailScripts.push(...externalJsTags);
+
+  const indexHtml =
+`<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DUNOPI Export</title>
+${headLinks.join('\n')}
+</head>
+<body>
+${htmlParts.join('\n')}
+${tailScripts.join('\n')}
+</body>
+</html>`;
+
+  zip.file('index.html', indexHtml);
+
+  const blob = await zip.generateAsync({type:'blob'});
+  saveAs(blob, 'dunopi-assembled.zip');
+});
+
+
+
+
+
+
+
+
 
 
 
