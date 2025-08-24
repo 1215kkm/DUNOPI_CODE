@@ -558,6 +558,15 @@ header#dunopi_main .login a:hover { color: #3da2f0; }
 
 
 
+/* design_preview 안에 독립 ‘디바이스 프레임’ */
+.design_preview.has-device .dunopi { display: none; }
+.device-preview {background:#fff; transition: .3s;}
+.device-preview iframe { width:100%; height:100%; border:0; display:block; }
+
+
+
+
+
 
  #dunopi_code_input .code_box.on1 .html_code {}
  #dunopi_code_input .code_box.on1 .css_code {}
