@@ -1,3 +1,11 @@
+// dunopi.js 맨 위쪽
+window.DUNOPI = {
+  init: function(options){
+    console.log("DUNOPI.init 실행됨", options);
+    // 필요시 options 저장하거나 초기화 코드 작성
+  }
+};
+
 window.onload = function(){
     window._dunopiLoaded = {
     css: new Set(),
@@ -166,7 +174,7 @@ window.onload = function(){
 function loadComponent(category, orderIndex){
   var map = {
     header : { root: 'components/header_source',  prefix: 'header'  },
-    slide  : { root: 'components/section_source', prefix: 'section' },
+    slide  : { root: 'components/slide_source', prefix: 'slide' },
     section: { root: 'components/section_source', prefix: 'section' },
     footer : { root: 'components/footer_source',  prefix: 'footer'  }
   };
@@ -211,6 +219,16 @@ async function _getText(url){ const r = await fetch(url, {cache:'no-cache'}); if
 async function _zipAddBinary(zip, path, url){ const buf = await _getArrayBuffer(url); zip.file(path, buf); return path; }
 function _safePath(url){ return url.replace(location.origin + '/', ''); }
 
+// ZIP에 파일 복사 (원래 경로 → assets/ 경로)
+async function _zipCopyFile(zip, absUrl){
+    const buf = await _getArrayBuffer(absUrl);
+    const rel = _safePath(absUrl);
+    const dst = rel;   // assets/ 경로 안에 그대로 복사
+    zip.file('assets/' + dst, buf);
+    return rel; // assets 안에서 쓸 상대경로 리턴
+}
+
+
 // CSS url(...) → ZIP 자산 경로로 치환
 async function _rewriteCssAndCollect(zip, cssUrl, cssText){
   const base = new URL('.', cssUrl).href;
@@ -240,144 +258,6 @@ async function _rewriteCssAndCollect(zip, cssUrl, cssText){
   out += cssText.slice(last);
   return out;
 }
-
-
-
-
-
-
-$('a.download').off('click').on('click', async function(e){
-  e.preventDefault();
-
-  const $zones = $('.dunopi .dunopi_zone');
-  if (!$zones.length){ alert('추가된 컴포넌트가 없습니다.'); return; }
-
-  const zip = new JSZip();
-  const htmlParts   = [];
-  const cssAllHrefs = [];
-  const jsAllSrcs   = [];
-  let inlineCssAll  = [];
-  let inlineJsAll   = [];
-
-  // 1) 본문 + 이미지 수집
-  for (const el of $zones){
-    const $z = $(el);
-    const $clone = $z.clone();
-    $clone.find('.btn_del_dunopi, i').remove();
-
-    // 이미지 로컬 자산으로 수집
-    const $imgs = $clone.find('img[src]');
-    for (const img of $imgs){
-      const src = $(img).attr('src');
-      if (!src || /^data:/i.test(src)) continue;
-      const abs = _absFrom($z.data('dpBase') || '.', src);
-      if (_sameOrigin(abs)){
-        const rel = _safePath(abs);
-        const target = 'assets/' + rel;
-        try{
-          await _zipAddBinary(zip, target, abs);
-          $(img).attr('src', target);
-        }catch(_){}
-      }
-    }
-
-    htmlParts.push($clone.html());
-
-    // 메타 수집
-    ( ($z.data('dpCss')||[]) ).forEach(h => cssAllHrefs.push(h));
-    ( ($z.data('dpJs') ||[]) ).forEach(s => jsAllSrcs.push(s));
-    inlineCssAll = inlineCssAll.concat($z.data('dpInlineCss')||[]);
-    inlineJsAll  = inlineJsAll.concat($z.data('dpInlineJs') ||[]);
-  }
-
-  // 2) 중복 제거(순서 유지)
-  const uniq = arr => [...new Map(arr.map(v=>[v,v])).values()];
-  const cssHrefs = uniq(cssAllHrefs);
-  const jsSrcs   = uniq(jsAllSrcs);
-
-  // 3) CSS 하나로 병합
-  const externalCssTags = [];  // CDN 등은 외부로 남김
-  const cssBundleParts  = [];
-
-  for (const href of cssHrefs){
-    if (!_sameOrigin(href)){
-      externalCssTags.push(`<link rel="stylesheet" href="${href}">`);
-      continue;
-    }
-    try{
-      const txt = await _getText(href);
-      const rewritten = await _rewriteCssAndCollect(zip, href, txt); // 내부 url(...) 자원도 ZIP에 복사
-      cssBundleParts.push(`/* ===== ${href} ===== */\n${rewritten}`);
-    }catch(_){
-      // 실패하면 외부 링크로 대체
-      externalCssTags.push(`<link rel="stylesheet" href="${href}">`);
-    }
-  }
-
-  if (inlineCssAll.length){
-    cssBundleParts.push(`/* ===== inline CSS ===== */\n${inlineCssAll.join('\n')}`);
-  }
-
-  const hasCssBundle = cssBundleParts.length > 0;
-  if (hasCssBundle){
-    zip.file('assets/bundle.css', cssBundleParts.join('\n\n'));
-  }
-
-  // 4) JS 하나로 병합
-  const externalJsTags = []; // CDN 등은 외부로 남김
-  const jsBundleParts  = [];
-
-  for (const src of jsSrcs){
-    if (!_sameOrigin(src)){
-      externalJsTags.push(`<script src="${src}"></script>`);
-      continue;
-    }
-    try{
-      const txt = await _getText(src);
-      jsBundleParts.push(`/* ===== ${src} ===== */\n;${txt}`);
-    }catch(_){
-      externalJsTags.push(`<script src="${src}"></script>`);
-    }
-  }
-
-  if (inlineJsAll.length){
-    jsBundleParts.push(`/* ===== inline JS ===== */\n;${inlineJsAll.join('\n;\n')}`);
-  }
-
-  const hasJsBundle = jsBundleParts.length > 0;
-  if (hasJsBundle){
-    zip.file('assets/bundle.js', jsBundleParts.join('\n\n'));
-  }
-
-  // 5) index.html 생성
-  const headLinks = [];
-  if (hasCssBundle) headLinks.push(`<link rel="stylesheet" href="assets/bundle.css">`);
-  headLinks.push(...externalCssTags);
-
-  const tailScripts = [];
-  if (hasJsBundle) tailScripts.push(`<script src="assets/bundle.js"></script>`);
-  tailScripts.push(...externalJsTags);
-
-  const indexHtml =
-`<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DUNOPI Export</title>
-${headLinks.join('\n')}
-</head>
-<body>
-${htmlParts.join('\n')}
-${tailScripts.join('\n')}
-</body>
-</html>`;
-
-  zip.file('index.html', indexHtml);
-
-  const blob = await zip.generateAsync({type:'blob'});
-  saveAs(blob, 'dunopi-assembled.zip');
-});
 
 
 

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>slide3</title>
+
+  <!-- Swiper CSS (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <!-- Component CSS -->
+  <link rel="stylesheet" href="css/slide3.css">
+</head>
+<body>
+<section class="c-slide3" data-component="slide3" aria-label="프로모션 슬라이드">
+  <div class="c-slide3__inner">
+
+    <!-- Swiper -->
+    <div class="swiper c-slide3__swiper">
+      <div class="swiper-wrapper">
+
+        <!-- slide 1 -->
+        <div class="swiper-slide c-slide3__slide">
+          <div class="c-slide3__media">
+            <img src="/images/img_none.jpg" alt="제품/서비스 이미지 1">
+          </div>
+          <div class="c-slide3__content">
+            <h2 class="c-slide3__title">세련된 웹 경험</h2>
+            <p class="c-slide3__desc">반응형 · 접근성 · 성능을 기본으로.</p>
+            <a href="#" class="c-slide3__btn">자세히 보기</a>
+          </div>
+        </div>
+
+        <!-- slide 2 -->
+        <div class="swiper-slide c-slide3__slide">
+          <div class="c-slide3__media">
+            <img src="/images/img_none.jpg" alt="제품/서비스 이미지 2">
+          </div>
+          <div class="c-slide3__content">
+            <h2 class="c-slide3__title">빠른 제작 흐름</h2>
+            <p class="c-slide3__desc">컴포넌트 조립으로 작업 시간을 단축.</p>
+            <a href="#" class="c-slide3__btn">바로 시작</a>
+          </div>
+        </div>
+
+        <!-- slide 3 -->
+        <div class="swiper-slide c-slide3__slide">
+          <div class="c-slide3__media">
+            <img src="/images/img_none.jpg" alt="제품/서비스 이미지 3">
+          </div>
+          <div class="c-slide3__content">
+            <h2 class="c-slide3__title">확장 가능한 구조</h2>
+            <p class="c-slide3__desc">디자인 · 소스 폴더 분리로 관리가 쉬워요.</p>
+            <a href="#" class="c-slide3__btn">가이드 보기</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <div class="c-slide3__pagination swiper-pagination" aria-label="슬라이드 페이지네이션"></div>
+      <button class="c-slide3__nav c-slide3__nav--prev swiper-button-prev" aria-label="이전 슬라이드"></button>
+      <button class="c-slide3__nav c-slide3__nav--next swiper-button-next" aria-label="다음 슬라이드"></button>
+    </div>
+  </div>
+</section>
+
+<!-- Swiper JS (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Component JS -->
+<script src="script/slide3.js"></script>
+</body>
+</html>

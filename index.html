@@ -20,9 +20,9 @@
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon2.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon2.png">
 
-    <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
 
     
     <link rel="stylesheet" href="css/dunopi_wrap.css">
@@ -345,6 +345,18 @@
 
 
     
-    
+    <script>
+        DUNOPI.init({
+            previewWrap: '.design_preview',
+            previewRoot: '.dunopi',
+            thumbSelector: '.each_section dd',
+            wideAllBtn: '.view_wide_small',
+            wideResetBtn: '.view_wide_big',
+            downloadBtn: 'a.download',
+            placeholderImageUrl: '/images/img_none.jpg'
+        });
+
+        DUNOPI_LOADER.initDownload(); // 다운로드 핸들러 강제 등록
+    </script>
 </body>
 </html>

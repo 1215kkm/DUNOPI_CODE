@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="./css/login1.css">
+<script src="./script/login1.js" defer></script>
+
+<section class="c-login1" data-component="login1" aria-labelledby="login1-title">
+  <div class="c-login1__wrap">
+    <h1 id="login1-title">Please sign in</h1>
+
+    <form action="#" method="post" class="login-form" novalidate>
+      <!-- Email -->
+      <label class="field">
+        <span class="label-text">이메일</span>
+        <input id="login-email" type="email" name="email" autocomplete="username"
+               placeholder="이메일을 입력하세요" required aria-describedby="email-error">
+        <small id="email-error" class="field-error" role="alert" aria-live="polite"></small>
+      </label>
+
+      <!-- Password -->
+      <label class="field">
+        <span class="label-text">비밀번호</span>
+        <input id="login-password" type="password" name="password" autocomplete="current-password"
+               placeholder="비밀번호를 입력하세요" required aria-describedby="password-error" minlength="8">
+        <small id="password-error" class="field-error" role="alert" aria-live="polite"></small>
+      </label>
+
+      <!-- Remember -->
+      <label class="remember">
+        <input type="checkbox" name="remember" value="1">
+        <span>자동 로그인</span>
+      </label>
+
+      <button type="submit" class="btn-primary" id="login-submit">로그인</button>
+      <!-- 전역 에러(서버/기타) -->
+      <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+    </form>
+  </div>
+</section>

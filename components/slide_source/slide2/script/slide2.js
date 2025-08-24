@@ -1,0 +1,1 @@
+(function(){ console.log('slide2 ready'); })();

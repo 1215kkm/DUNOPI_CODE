@@ -1,0 +1,11 @@
+.c-section2 { padding:48px 20px; background:#f8f8f8; color:#222; }
+.c-section2__inner { max-width:1080px; margin:0 auto; }
+.c-section2 h3 { margin:0 0 18px; font-size:1.25rem; }
+.c-section2__list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+.c-section2__list li { background:#fff; border:1px solid #eee; border-radius:10px; padding:12px; text-align:center; }
+.c-section2__list h4 { margin:10px 0 6px; font-size:1.05rem; }
+.c-section2__list p { margin:0; font-size:.95rem; color:#555; }
+
+@media (max-width:900px){
+  .c-section2__list { grid-template-columns: 1fr; }
+}

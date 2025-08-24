@@ -10,7 +10,7 @@
             
             <nav>
                 <ul>
-                    <li><a href="#">COMPANY</a>
+                    <li><a href="#">COMPANY2</a>
                         <ul class="lnb">
                             <li><a href="#">submenu1</a></li>
                             <li><a href="#">submenu2</a></li>
@@ -18,7 +18,7 @@
                             <li><a href="#">submenu4</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">BUSINESS</a>
+                    <li><a href="#">BUSINESS2</a>
                         <ul class="lnb">
                             <li><a href="#">submenu1</a></li>
                             <li><a href="#">submenu2</a></li>

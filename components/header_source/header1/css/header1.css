@@ -1,0 +1,22 @@
+/* 컴포넌트 스코프: 충돌 방지 */
+.c-header1 {
+  --bg:#111; --fg:#fff; --gap:20px; --max:1200px;
+  background:var(--bg); color:var(--fg); width:100%;
+}
+.c-header1__inner{
+  max-width:var(--max); margin:0 auto; padding:12px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.c-header1__logo a{ color:var(--fg); text-decoration:none; font-weight:700; }
+.c-header1__menu{ list-style:none; margin:0; padding:0; display:flex; gap:var(--gap); }
+.c-header1__menu a{ color:var(--fg); text-decoration:none; }
+.c-header1__menu a:hover{ text-decoration:underline; }
+
+/* 모바일 토글 */
+.c-header1__toggle{ display:none; background:none; border:0; color:var(--fg); font-size:20px; }
+@media (max-width:960px){
+  .c-header1__toggle{ display:inline-block; }
+  .c-header1__nav{ display:none; }
+  .c-header1.is-open .c-header1__nav{ display:block; width:100%; }
+  .c-header1__menu{ flex-direction:column; gap:12px; margin-top:12px; }
+}

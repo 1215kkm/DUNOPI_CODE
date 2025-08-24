@@ -1,0 +1,5 @@
+.c-footer2 { background:#222; color:#ddd; text-align:center; padding:24px 16px; }
+.c-footer2__inner { max-width:1200px; margin:0 auto; }
+.c-footer2__nav { margin-bottom:6px; }
+.c-footer2__nav a { color:#ddd; text-decoration:none; margin:0 6px; }
+.c-footer2__nav a:hover { color:#fff; }

@@ -1,0 +1,113 @@
+.c-section3 {
+  padding: 56px 20px;
+  background: #fafafa;
+}
+.c-section3__inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.c-section3 h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+/* 목록 */
+.notice-page {
+  display: none;            /* 기본 비표시 */
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  border-top: 1px solid #e8e8e8;
+}
+.notice-page li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+.notice-page li a {
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: #222;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.notice-page li a:hover {
+  text-decoration: underline;
+}
+.notice-page .meta {
+  flex: none;
+  color: #666;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* 첫 페이지 기본 노출 (해시가 없을 때) */
+.notice-page:first-of-type {
+  display: block;
+}
+
+/* :target 된 페이지 노출 */
+.notice-page:target {
+  display: block;
+}
+
+/* :target이 있으면 첫 페이지 숨김 처리 (중복 노출 방지) */
+:target ~ .notice-page:first-of-type {
+  display: none;
+}
+
+/* 페이지네이션 */
+.pagination {
+  text-align: center;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+.pagination .pglink {
+  display: inline-block;
+  min-width: 36px;
+  padding: 6px 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1;
+}
+.pagination .pglink:hover {
+  background: #f2f2f2;
+}
+
+/* (선택) 최신 브라우저에서 현재 페이지 하이라이트 */
+:root:has(#page1:target) .pagination a[href="#page1"],
+:root:has(#page2:target) .pagination a[href="#page2"],
+:root:has(#page3:target) .pagination a[href="#page3"] {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* 해시가 없는 초기 상태에서 1페이지 활성 표시 */
+:root:not(:has(:target)) .pagination a[href="#page1"] {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* 반응형 */
+@media (max-width: 560px) {
+  .notice-page li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .notice-page .meta {
+    margin-top: 6px;
+  }
+}

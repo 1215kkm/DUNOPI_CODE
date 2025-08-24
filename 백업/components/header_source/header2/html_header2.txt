@@ -1,0 +1,69 @@
+<header id="header1">
+        <div class="center_box_1400 autoHeight">
+            <h1>
+                <a href="#">
+                    <!-- <img src="images/img_none.jpg" alt="img_none"> -->
+                    LOGO
+                    <img src="images/logo.png" alt="">
+                </a>
+            </h1>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">COMPANY2</a>
+                        <ul class="lnb">
+                            <li><a href="#">submenu1</a></li>
+                            <li><a href="#">submenu2</a></li>
+                            <li><a href="#">submenu3</a></li>
+                            <li><a href="#">submenu4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">BUSINESS2</a>
+                        <ul class="lnb">
+                            <li><a href="#">submenu1</a></li>
+                            <li><a href="#">submenu2</a></li>
+                            <li><a href="#">submenu3</a></li>
+                            <li><a href="#">submenu4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">PRODUCTS</a>
+                        <ul class="lnb">
+                            <li><a href="#">submenu1</a></li>
+                            <li><a href="#">submenu2</a></li>
+                            <li><a href="#">submenu3</a></li>
+                            <li><a href="#">submenu4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">SERVICE</a>
+                        <ul class="lnb">
+                            <li><a href="#">submenu1</a></li>
+                            <li><a href="#">submenu2</a></li>
+                            <li><a href="#">submenu3</a></li>
+                            <li><a href="#">submenu4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">BOARD</a>
+                        <ul class="lnb">
+                            <li><a href="#">submenu1</a></li>
+                            <li><a href="#">submenu2</a></li>
+                            <li><a href="#">submenu3</a></li>
+                            <li><a href="#">submenu4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <i class="xi-bars"></i>
+                
+            </nav>
+
+            <i class="xi-star"></i>
+
+            <div class="topmenu">
+                <a href="#">LOGIN</a>
+                <a href="#">SIGN UP</a>
+                <a href="#" class="call">
+                    <i class="xi-call"></i> 010) 3321-7317
+                </a>
+            </div>
+        </div>
+    </header>

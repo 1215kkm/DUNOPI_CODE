@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="./css/login2.css">
+<script src="./script/login2.js" defer></script>
+
+<section class="c-login2" data-component="login2">
+  <div class="c-login2__inner">
+
+    <!-- 왼쪽 배너 -->
+    <div class="login-banner">
+      <div class="banner-box">
+          <img src="/images/img_none.jpg" alt="">
+      </div>
+    </div>
+
+    <!-- 오른쪽 로그인 박스 -->
+    <div class="login-box">
+      <!-- 로고 -->
+      <div class="logo">LOGO</div>
+
+      <!-- 폼 -->
+      <form class="login-form" action="#" method="post" novalidate>
+        <label class="field">
+          <span>이메일</span>
+          <input type="email" name="email" id="login2-email" placeholder="이메일을 입력하세요" required>
+        </label>
+
+        <label class="field">
+          <span>비밀번호</span>
+          <input type="password" name="password" id="login2-password" placeholder="비밀번호를 입력하세요" required>
+          <a href="#" class="forgot">비밀번호찾기</a>
+        </label>
+
+        <button type="submit" class="btn-primary" id="login2-submit">로그인</button>
+
+        <p class="signup-text">
+          아직 회원이 아니신가요? <a href="#">회원가입</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>

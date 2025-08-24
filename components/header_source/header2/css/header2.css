@@ -1,0 +1,14 @@
+.c-header2 { background:#000; color:#fff; }
+.c-header2__inner { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
+.c-header2__logo a { color:#fff; text-decoration:none; font-weight:700; }
+.c-header2__menu { list-style:none; margin:0; padding:0; display:flex; gap:18px; }
+.c-header2__menu a { color:#fff; text-decoration:none; }
+.c-header2__menu a:hover { text-decoration:underline; }
+.c-header2__toggle { display:none; background:none; border:0; color:#fff; font-size:20px; }
+
+@media (max-width:960px){
+  .c-header2__toggle{ display:inline-block; }
+  .c-header2__nav{ display:none; }
+  .c-header2.is-open .c-header2__nav{ display:block; }
+  .c-header2__menu{ flex-direction:column; gap:12px; margin-top:12px; }
+}

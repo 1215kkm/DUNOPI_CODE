@@ -1,0 +1,64 @@
+.c-header3 {
+  background: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 20px;
+}
+
+/* 상단 영역 */
+.c-header3__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-small {
+  width: 32px;
+  height: 32px;
+  background: #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.logo-large {
+  font-size: 24px;
+  font-weight: bold;
+  background: #ccc;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  background: #bbb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 네비게이션 */
+.c-header3__nav {
+  margin-top: 10px;
+}
+.c-header3__nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.c-header3__nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+}
+.c-header3__nav a:hover {
+  color: #0077cc;
+}

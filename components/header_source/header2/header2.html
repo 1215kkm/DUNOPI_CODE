@@ -1,84 +1,19 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header1</title>
-    <link rel="stylesheet" href="/DOONOPI_CODE/css/dunopi_pub.css">
-    <link rel="stylesheet" href="css/duno_m_header1.css" media="screen and (max-width:768px)">
-    <script src="script/dunopi_script.js"></script>
-</head>
-<body>
-    <header id="header1">
-        <div class="center_box_1400 autoHeight">
-            <h1>
-                <a href="#">
-                    <!-- <img src="images/img_none.jpg" alt="img_none"> -->
-                    <img src="images/logo.png" alt="">
-                </a>
-            </h1>
-            
-            <nav>
-                <ul>
-                    <li><a href="#">COMPANY</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">BUSINESS</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">PRODUCTS</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">SERVICE</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">BOARD</a>
-                        <ul class="lnb">
-                            <li><a href="#">submenu1</a></li>
-                            <li><a href="#">submenu2</a></li>
-                            <li><a href="#">submenu3</a></li>
-                            <li><a href="#">submenu4</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                
-                <i class="xi-bars"></i>
-                
-            </nav>
+<link rel="stylesheet" href="./css/header2.css">
+<script src="./script/header2.js"></script>
 
-            <i class="xi-star"></i>
+<header class="c-header2" data-component="header2" role="banner">
+  <div class="c-header2__inner">
+    <h1 class="c-header2__logo"><a href="/">DUNOPI Dark</a></h1>
 
-            <div class="topmenu">
-                <a href="#">LOGIN</a>
-                <a href="#">SIGN UP</a>
-                <a href="#" class="call">
-                    <i class="xi-call"></i> 010) 3321-7317
-                </a>
-            </div>
-        </div>
-    </header>
-    
-    
-</body>
-</html>
+    <button class="c-header2__toggle" aria-expanded="false" aria-controls="c-header2-nav">☰</button>
+
+    <nav class="c-header2__nav" id="c-header2-nav" aria-label="주 메뉴">
+      <ul class="c-header2__menu">
+        <li><a href="#">회사소개</a></li>
+        <li><a href="#">포트폴리오</a></li>
+        <li><a href="#">채용</a></li>
+        <li><a href="#">연락처</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

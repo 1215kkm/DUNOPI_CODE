@@ -1,0 +1,123 @@
+.c-login2 {
+  background: #fff;
+  padding: 40px 20px;
+}
+.c-login2__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* 왼쪽 배너 */
+.banner-box {
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  font-style: italic;
+  color: #333;
+  font-size: 18px;
+}
+
+/* 오른쪽 로그인박스 */
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  background: #7a4fc2;
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* 폼 */
+.login-form {
+  width: 100%;
+  max-width: 320px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  position: relative;
+}
+.field span {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+.field input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.field input:focus {
+  border-color: #7a4fc2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(122, 79, 194, .2);
+}
+.forgot {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  font-size: 13px;
+  color: #5a6e8c;
+  text-decoration: none;
+}
+.forgot:hover { text-decoration: underline; }
+
+/* 버튼 */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: #7a4fc2;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background .2s ease;
+}
+.btn-primary:hover {
+  background: #673ab7;
+}
+
+/* 가입 텍스트 */
+.signup-text {
+  margin-top: 14px;
+  font-size: 13px;
+  text-align: center;
+  color: #555;
+}
+.signup-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+.signup-text a:hover { text-decoration: underline; }
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .c-login2__inner {
+    grid-template-columns: 1fr;
+  }
+  .banner-box {
+    min-height: 200px;
+  }
+}
