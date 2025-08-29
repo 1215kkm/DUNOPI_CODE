@@ -599,3 +599,56 @@ header#dunopi_main .login a:hover { color: #3da2f0; }
 
  .icon_height100.on path:nth-child(1) {stroke:none; }
  .icon_height100.on path:nth-child(2) {stroke:#fff}
+
+ /* design_preview 안에 독립 ‘디바이스 프레임’ */
+ .design_preview.has-frame .dunopi { display:none; } /* 프레임 모드일 땐 원본 숨김 */
+ .device-preview { background:#fff; }
+ .device-preview iframe { width:100%; border:0; display:block; transition: 1s; overflow-y: hidden;}
+
+/* PC↔모바일 전환 애니메이션 */
+.design_preview { 
+   transition: width .25s ease, transform .25s ease, opacity .25s ease;
+ }
+ 
+ /* 모바일 모드일 때만 원본(.dunopi) 숨김 */
+ .design_preview.mode-mobile .dunopi { 
+   opacity: 0; pointer-events: none; transform: scale(.98);
+ }
+ 
+/* 모바일 프리뷰 전환 애니메이션 */
+.design_preview{
+   position: relative; /* 중요: absolute 자식 기준 */
+   transition: width .25s ease, transform .25s ease, opacity .25s ease;
+ }
+ 
+ /* 기본 상태: 편집용 원본이 흐름을 차지 */
+ .design_preview .dunopi{
+   position: relative;
+   transition: opacity .2s ease, transform .2s ease;
+ }
+ 
+ /* ★ 모바일 모드: 원본을 '보이지도/클릭되지도 않고 공간도 차지하지 않게' 처리 */
+ .design_preview.mode-mobile .dunopi{
+   position: absolute; /* 흐름에서 제거 */
+   left: 0; top: 0; right: 0;
+   opacity: 0;
+   pointer-events: none;
+   transform: scale(.98);
+ }
+ 
+ /* iframe 컨테이너 페이드인 */
+ .device-preview{
+   opacity: 0; pointer-events: none;
+   transform: translateY(6px);
+   transition: opacity .2s ease, transform .2s ease;
+ }
+ .design_preview.mode-mobile .device-preview{
+   opacity: 1; pointer-events: auto;
+   transform: translateY(0);
+ }
+ 
+ /* 모바일 모드일 때 컨테이너 약간 축소(원하면 값 조절) */
+ .design_preview.mode-mobile{
+   transform: translate(-50%,0) scale(0.9);
+ }
+ #dp-mount > *:first-child{ margin-top:0 !important; }
